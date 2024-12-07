@@ -126,7 +126,7 @@ export default {
     methods: {
         async submitFormSignIn() {
             try {
-                const response = await axios.post("http://localhost/backend/Login.php", this.LoginData, {
+                const response = await axios.post("http://localhost:8081/backend/Login.php", this.LoginData, {
                     headers: { "Content-Type": "application/json" }
                 });
                 if (response.data === "estudiante") {
@@ -144,7 +144,7 @@ export default {
         },
         async submitFormSignUp() {
             try {
-                const response = await axios.post("http://localhost/proyecto%20vue/backend/Register.php", this.RegisterData, {
+                const response = await axios.post("http://localhost:8081/backend/Register.php", this.RegisterData, {
                     headers: { "Content-Type": "application/json" }
                 });
                 this.RegisterData = {
@@ -153,8 +153,8 @@ export default {
                     identification: "",
                     phone: "",
                     gender: "",
-                    email: "",
-                    password: "",
+                    remail: "",
+                    rpassword: "",
                 };
             } catch (error) {
                 console.error("Error al enviar los datos:", error);
