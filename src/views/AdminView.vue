@@ -9,5 +9,4 @@ export default{
 </script>
 
 <style>
-    @import '../assets/styles/AdminView.css';
 </style>
