@@ -1,20 +1,20 @@
 <template>
  <nav class="navbar navbar-expand-lg fixed-top nb">
     <div class="container-fluid">
-      <a class="navbar-brand me-auto" href="#">
-         <img class="imgt" src="../../public/logo/Logo.png" alt="Logo" />
-      </a>
+      <router-link to="/Home" class="navbar-brand me-auto" aria-current="page">
+        <img class="imgt" src="../../public/logo/Logo.png" alt="Logo" />
+      </router-link>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+          <div class="navbar-nav justify-content-center flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link mx-lg-2 active" aria-current="page" href="Connection.html">Home</a>
+              <router-link to="/Home" class="nav-link mx-lg-2" aria-current="page">Home</router-link>
             </li>
             <li class="nav-item">
               <a class="nav-link mx-lg-2" href="ClassProgramingAdmin.html">Clases</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="Events.html">Eventos</a>
+              <router-link to="/Events" class="nav-link mx-lg-2" aria-current="page">Eventos</router-link>
             </li>
             <li class="nav-item">
               <a class="nav-link mx-lg-2" href="Report.html">Reportes</a>
@@ -25,7 +25,7 @@
             <li class="nav-item">
               <a class="nav-link mx-lg-2" href="StudentAdmission.html">Administración de Roles</a>
             </li>
-          </ul>
+          </div>
         </div>
       </div>
       <a href="Perfil.html" class="icon">
@@ -59,6 +59,7 @@
   top: 0;
   width: 100%;
   position: fixed;
+  z-index: 1;
 }
 
 .container-fluid{
@@ -80,10 +81,17 @@
   font-size: 1.25rem;
 }
 
-ul {
+.navbar-nav{
   list-style: none;
   display: flex;
   gap: 30px;
+}
+
+router-link{
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  position: relative;
 }
 
 a{

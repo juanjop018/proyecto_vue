@@ -1,15 +1,17 @@
 <template>
-    <title>Inicio</title>
     <body>
         <NavBar />
+        <Footer />
     </body>
 </template>
 
 <script>
 import NavBar from "@/components/NavBArComponent.vue"
+import Footer from "@/components/FooterComponent.vue"
 export default {
     components: {
-        NavBar
+        NavBar,
+        Footer
     }
 }
 </script>
