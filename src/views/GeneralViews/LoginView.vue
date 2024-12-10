@@ -1,7 +1,5 @@
 <template>
-
     <body>
-        <h1>DanceSheduler</h1>
         <div class="container" ref="container">
             <div class="container-form">
                 <form class="sign-in" @submit.prevent="submitFormSignIn">
@@ -22,7 +20,7 @@
                     </div>
                     <div class="container-input">
                         <ion-icon name="mail"></ion-icon>
-                        <input type="email" placeholder="Correo" v-model="LoginData.email" required>
+                    <input type="email" placeholder="Correo" v-model="LoginData.email" required>
                     </div>
                     <div class="container-input">
                         <ion-icon name="lock-closed-outline"></ion-icon>
@@ -35,20 +33,6 @@
             <div class="container-form" @submit.prevent="submitFormSignUp">
                 <form class="sign-up">
                     <h2>Registrarse</h2>
-                    <div class="social-networks">
-                        <a href="https://www.instagram.com/ln7dancestudio_/" target="_blank">
-                            <ion-icon name="logo-instagram"></ion-icon>
-                        </a>
-                        <a href="https://www.facebook.com/ln7dancestudio" target="_blank">
-                            <ion-icon name="logo-facebook"></ion-icon>
-                        </a>
-                        <a href="https://www.youtube.com/@ledersonleon8197" target="_blank">
-                            <ion-icon name="logo-youtube"></ion-icon>
-                        </a>
-                        <a href="https://www.tiktok.com/@lnsietedancestudio_" target="_blank">
-                            <ion-icon name="logo-tiktok"></ion-icon>
-                        </a>
-                    </div>
                     <div class="container-input">
                         <ion-icon name="person-outline"></ion-icon>
                         <input type="text" placeholder="Nombres" v-model="RegisterData.name" required>
@@ -58,9 +42,18 @@
                         <input type="text" placeholder="Apellidos" v-model="RegisterData.surname" required>
                     </div>
                     <div class="container-input">
+                        <ion-icon name="clipboard-outline"></ion-icon>
+                        <select v-model="RegisterData.identification" required>
+                            <option disabled selected=""></option>
+                            <option>Cedula</option>
+                            <option>Tarjeta de identidad</option>
+                            <option>Pasaporte</option>
+                            <option>Otro</option>
+                        </select>
+                    </div>
+                    <div class="container-input">
                         <ion-icon name="id-card-outline"></ion-icon>
-                        <input type="number" placeholder="Numero de identificación"
-                            v-model="RegisterData.identification" required>
+                        <input type="number" placeholder="Numero de identificación" v-model="RegisterData.identification_number" required>
                     </div>
                     <div class="container-input">
                         <ion-icon name="call-outline"></ion-icon>
@@ -74,6 +67,14 @@
                             <option>Femenino</option>
                             <option>Otro</option>
                         </select>
+                    </div>
+                    <div class="container-input">
+                        <ion-icon name="walk-outline"></ion-icon>
+                        <input type="number" placeholder="Edad" v-model="RegisterData.age" required>
+                    </div>
+                    <div class="container-input">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <input type="text" placeholder="Nombre de usuario" v-model="RegisterData.user" required>
                     </div>
                     <div class="container-input">
                         <ion-icon name="mail"></ion-icon>
@@ -115,8 +116,11 @@ export default {
                 name: "",
                 surname: "",
                 identification: "",
+                identification_number: "",
                 phone: "",
                 gender: "",
+                age: "",
+                user: "",
                 remail: "",
                 rpassword: "",
                 rol: "estudiante"
@@ -144,17 +148,31 @@ export default {
         },
         async submitFormSignUp() {
             try {
+<<<<<<< HEAD:src/views/GeneralViews/LoginView.vue
+                console.log(this.RegisterData); // Verifica qué datos se están enviando
+                const response = await axios.post("http://localhost/backend/Register.php", this.RegisterData, {
+=======
                 const response = await axios.post("http://localhost:8081/backend/Register.php", this.RegisterData, {
+>>>>>>> 0958d84eac56eb13be502691e3f6e6de3b1431bf:src/views/LoginView.vue
                     headers: { "Content-Type": "application/json" }
                 });
+                console.log(response.data); // Verifica la respuesta del backend
                 this.RegisterData = {
                     name: "",
                     surname: "",
                     identification: "",
+                    identification_number: "",
                     phone: "",
                     gender: "",
+<<<<<<< HEAD:src/views/GeneralViews/LoginView.vue
+                    age: "",
+                    user: "",
+                    email: "",
+                    password: "",
+=======
                     remail: "",
                     rpassword: "",
+>>>>>>> 0958d84eac56eb13be502691e3f6e6de3b1431bf:src/views/LoginView.vue
                 };
             } catch (error) {
                 console.error("Error al enviar los datos:", error);
@@ -172,5 +190,5 @@ export default {
 </script>
 
 <style scoped>
-@import '../assets/styles/LoginView.css';
+@import '../../assets/styles/LoginView.css';
 </style>
