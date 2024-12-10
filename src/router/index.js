@@ -4,6 +4,7 @@ import Admin from '../views/AdminViews/AdminView.vue'
 import Professor from '../views/ProfessorViews/ProfessorView.vue'
 import Student from '../views/UsersViews/StudentView.vue'
 import Classes from '../views/AdminViews/ClassView.vue'
+import Classes from '../views/adminRoles.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

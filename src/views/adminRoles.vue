@@ -13,9 +13,9 @@
   </template>
   
   <script setup>
-  import Navbar from "../components/NavBArComponent.vue";
-  import roles from "../components/admRoles.vue";
-  import Footer from "../components/FooterComponent.vue";
+  import Navbar from "@/components/NavBArComponent.vue";
+  import roles from "@/components/admRoles.vue";
+  import Footer from "@/components/FooterComponent.vue";
   </script>
   
   <style scoped>
