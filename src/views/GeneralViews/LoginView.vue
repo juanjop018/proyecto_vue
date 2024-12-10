@@ -130,7 +130,7 @@ export default {
     methods: {
         async submitFormSignIn() {
             try {
-                const response = await axios.post("http://localhost/backend/Login.php", this.LoginData, {
+                const response = await axios.post("http://localhost:8081/backend/Login.php", this.LoginData, {
                     headers: { "Content-Type": "application/json" }
                 });
                 if (response.data === "estudiante") {
@@ -148,8 +148,12 @@ export default {
         },
         async submitFormSignUp() {
             try {
+<<<<<<< HEAD:src/views/GeneralViews/LoginView.vue
                 console.log(this.RegisterData); // Verifica qué datos se están enviando
                 const response = await axios.post("http://localhost/backend/Register.php", this.RegisterData, {
+=======
+                const response = await axios.post("http://localhost:8081/backend/Register.php", this.RegisterData, {
+>>>>>>> 0958d84eac56eb13be502691e3f6e6de3b1431bf:src/views/LoginView.vue
                     headers: { "Content-Type": "application/json" }
                 });
                 console.log(response.data); // Verifica la respuesta del backend
@@ -160,10 +164,15 @@ export default {
                     identification_number: "",
                     phone: "",
                     gender: "",
+<<<<<<< HEAD:src/views/GeneralViews/LoginView.vue
                     age: "",
                     user: "",
                     email: "",
                     password: "",
+=======
+                    remail: "",
+                    rpassword: "",
+>>>>>>> 0958d84eac56eb13be502691e3f6e6de3b1431bf:src/views/LoginView.vue
                 };
             } catch (error) {
                 console.error("Error al enviar los datos:", error);
