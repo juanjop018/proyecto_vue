@@ -127,13 +127,13 @@
     <Footer></Footer>
   </template>
   
-  <script setup>
+  <script>
     import Navbar from "@/components/NavBArComponent.vue";
   import Footer from "@/components/FooterComponent.vue";
   import { ref } from 'vue';
-  import FullCalendar from '@fullcalendar/vue3';
-  import dayGridPlugin from '@fullcalendar/daygrid';
-  import timeGridPlugin from '@fullcalendar/timegrid';
+  // import FullCalendar from '@fullcalendar/vue3';
+  // import dayGridPlugin from '@fullcalendar/daygrid';
+  // import timeGridPlugin from '@fullcalendar/timegrid';
   
   const alumnos = ref([
     { nombre: 'Juan Pérez', nota: '8', profesor: 'Mr. Smith', clase: 'Matemáticas', status: 'Activo' },

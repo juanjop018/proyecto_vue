@@ -104,7 +104,7 @@ export default {
 </script>
 
 <style scoped>
-    @import '../assets/styles/Main.css';
+    @import '../../assets/styles/Main.css';
 
     body{
         background: linear-gradient(317deg, #5f2f9a, #076a81, #b269cd);
