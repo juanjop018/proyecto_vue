@@ -13,19 +13,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(317deg, #5f2f9a, #076a81, #b269cd);
+    background: repeating-linear-gradient(#5f2f9a, #b269cd);
 }
-
-h1 {
-    font-size: 50px;
-    position: absolute;
-    top: 6%;
-}
-
+ 
 .container {
-    top: 5%;
     width: 800px;
-    height: 700px;
+    height: 800px;
     display: flex;
     position: relative;
     background-color: white;
@@ -68,7 +61,7 @@ h1 {
 }
 
 .social-networks ion-icon:hover {
-    background-color: #3AB397;
+    transform: scale(1.1);
 }
 
 .container-input {
@@ -113,6 +106,11 @@ input[type="number"]::-webkit-outer-spin-button {
     font-size: 14px;
     margin-bottom: 20px;
     margin-top: 5px;
+    text-decoration: none;
+}
+
+.container-form a:hover {
+    transform: scale(1.1);
 }
 
 .button {
@@ -123,12 +121,12 @@ input[type="number"]::-webkit-outer-spin-button {
     border-radius: 6px;
     cursor: pointer;
     margin-top: 30px;
-    background-color: #3AB397;
+    background-color: #5f2f9a;
     color: white;
 }
 
 .button:hover {
-    background-color: #308f79;
+    transform: scale(1.1);
 }
 
 /*Animacion formularios*/
@@ -154,15 +152,15 @@ input[type="number"]::-webkit-outer-spin-button {
     display: flex;
     align-items: center;
     transform: translateX(100%);
-    background-color: #3AB397;
+    background: repeating-linear-gradient(#5f2f9a, #076a81);
     transition: transform 0.5s ease-in-out, border-radius 0.5s ease-in-out;
     overflow: hidden;
-    border-radius: 50% 0 0 50%;
+    border-radius: 20% 0 0 20%;
 }
 
 .container.toggle .container-welcome {
     transform: translateX(0);
-    border-radius: 0 50% 50% 0;
+    border-radius: 0 20% 20% 0;
 }
 
 .container-welcome .welcome {
@@ -190,7 +188,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .container-welcome .button {
-    border: 1px solid white;
+    border: 1px solid #5f2f9a83;
 }
 
 .container.toggle .welcome-sign-in {
