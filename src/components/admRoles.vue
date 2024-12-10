@@ -180,5 +180,3 @@ const agregarEvento = () => {
   margin: 0 auto;
 }
 </style>
-
-  
