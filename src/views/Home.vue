@@ -22,8 +22,9 @@
                 <div class="team-cards">
                     <div class="col-md-4 mb-3">
                         <div class="instructor-card">
-                            <div class="instructor-img"
-                            style="background-image: url('../../public/images/Afro_Luis.png');"></div>
+                            <div class="instructor-img">
+                                <img src="../../public/images/Afro_luis.png" alt="">
+                            </div>
                             <div class="instructor-info">
                                 <h3>Luis</h3>
                                 <p><strong>Habilidades:</strong> Afro Dance</p>
@@ -37,8 +38,9 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="instructor-card">
-                            <div class="instructor-img"
-                            style="background-image: url('../../public/images/Chokola_T.png');"></div>
+                            <div class="instructor-img">
+                                <img src="../../public/images/Chokola_t.png" alt="">
+                            </div>
                             <div class="instructor-info">
                                 <h3>Chokola T</h3>
                                 <p><strong>Habilidades:</strong> Perreo</p>
@@ -52,8 +54,9 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="instructor-card">
-                            <div class="instructor-img"
-                                style="background-image: url('../../public/images/Brandon.png');"></div>
+                            <div class="instructor-img">
+                                <img src="../../public/images/Brandon.png" alt="">
+                            </div>
                             <div class="instructor-info">
                                 <h3>Brandon</h3>
                                 <p><strong>Habilidades:</strong> Electro Dance</p>
@@ -64,6 +67,23 @@
                                 <div class="star-rating">★★</div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="classes">
+                <h2 class="text-center text-white">Nuestras Clases</h2>
+                <p class="text-center text-white">Ven y disfruta de nuestras clases presenciales grupales, personalizadas,
+                    semipersonalizadas y recuerda que también tenemos clases a domicilio!</p>
+                
+                <div id="clasesCarousel" class="carousel-container">
+                    <div class="carousel-images">
+                        <img src="../../public/images/Bachata.png" alt="Bachata">
+                        <img src="../../public/images/Salsa.png" alt="Salsa">
+                        <img src="../../public/images/AfroDance.png" alt="Afrobeat">
+                        <img src="../../public/images/Champeta.jpg" alt="Champeta">
+                        <img src="../../public/images/merengue.jpg" alt="Merengue">
+                        <img src="../../public/images/PolDance.png" alt="Pole Dance">
                     </div>
                 </div>
             </section>
@@ -138,6 +158,7 @@ export default {
 /*//////////////////////////////////////////////////////////////*/
     .team{
         width: 100%;
+        padding-bottom: 50px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -161,75 +182,112 @@ export default {
 
     .instructor-card {
         perspective: 1000px;
+        height: 200px;
         position: relative;
         width: 100%;
         height: auto;
     }
-
-    .instructor-img {
+    
+    .instructor-img img {
         width: 100%;
-        padding-top: 150%;
-        background-size: contain;
-        background-position: center;
+        height: 400px;
         border-radius: 10px;
         cursor: pointer;
         transition: transform 0.6s;
         transform-style: preserve-3d;
         position: relative;
     }
-    
-    
+
+    .instructor-info {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.85);
+        color: white;
+        border-radius: 10px;
+        backface-visibility: hidden;
+        transform: rotateY(180deg);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        opacity: 0;
+    }
+
+    .instructor-card:hover .instructor-img img{
+        transform: scale(1.05);
+        transition: 0.5s;
+    }
+
+    .instructor-card:hover .instructor-info {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .instructor-card .star-rating {
+        color: #ffd700;
+        font-size: 1.5em;
+    }
+
+
+/*//////////////////////////////////////////////////////////////*/
+    .classes{
+        width: 100%;
+        padding-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: rgb(255, 255, 255);
+    }
+
+    .classes h2{
+        padding: 35px;
+        font-size: 2rem;
+    }
+
+    .classes p{
+        font-size: 1rem;
+        font-weight: 500;
+        padding-bottom: 35px;
+        color: #000000;
+    }
+
+    .carousel-container {
+        position: relative;
+        width: 100%;
+        height: 400px;
+    }
+
+    .carousel-images {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 80%;
+        height: 300px;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .carousel-images img {
+        position: absolute;
+        width: 240px;
+        border-radius: 25px;
+        height: 300px;
+        opacity: 0.9;
+        transition: transform 1s ease, opacity 1s ease;
+    }
+
+    .carousel-images img.active {
+        z-index: 5;
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
 </style>
-
-.instructor-info {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    color: white;
-    border-radius: 10px;
-    backface-visibility: hidden;
-    transform: rotateY(180deg);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    opacity: 0;
-    /* Inicialmente oculto */
-}
-
-.instructor-card:hover .instructor-img {
-    transform: rotateY(180deg);
-}
-
-.instructor-card:hover .instructor-info {
-    opacity: 1;
-    transform: rotateY(0deg);
-}
-
-.instructor-card .star-rating {
-    color: #ffd700;
-    font-size: 1.5em;
-}
-
-.instructor-card {
-    transform-style: preserve-3d;
-    transform: rotateY(0deg);
-}
-
-.instructor-card .instructor-img,
-.instructor-card .instructor-info {
-    backface-visibility: hidden;
-}
-
-.instructor-card .instructor-img {
-    transform: rotateY(0deg);
-}
-
-.instructor-card .instructor-info {
-    transform: rotateY(180deg);
-}
