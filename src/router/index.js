@@ -29,6 +29,11 @@ const router = createRouter({
       component: Student,
     },
     {
+      path: '/Roles',
+      name: 'adminRoles',
+      component: Roles,
+    },
+    {
       path: '/Classes',
       name: 'Classes',
       component: Classes,
