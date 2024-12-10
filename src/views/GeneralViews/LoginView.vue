@@ -150,7 +150,6 @@ export default {
             try {
                 console.log(this.RegisterData); // Verifica qué datos se están enviando
                 const response = await axios.post("http://localhost/backend/Register.php", this.RegisterData, {
-
                     headers: { "Content-Type": "application/json" }
                 });
                 console.log(response.data); // Verifica la respuesta del backend
@@ -165,6 +164,8 @@ export default {
                     user: "",
                     email: "",
                     password: "",
+                    remail: "",
+                    rpassword: "",
                 };
             } catch (error) {
                 console.error("Error al enviar los datos:", error);
