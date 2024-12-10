@@ -1,26 +1,20 @@
 <template>
  <nav class="navbar navbar-expand-lg fixed-top nb">
     <div class="container-fluid">
-      <a class="navbar-brand me-auto" href="Connection.html">
-         <img class="imgt" src="@/assets/img/icons/Sin título.png" alt="Logo" />
-      </a>
+      <router-link to="/Home" class="navbar-brand me-auto" aria-current="page">
+        <img class="imgt" src="../../public/logo/Logo.png" alt="Logo" />
+      </router-link>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-            <img src="@/assets/img/icons/Sin título.png" alt="Logo" />
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
         <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+          <div class="navbar-nav justify-content-center flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link mx-lg-2 active" aria-current="page" href="Connection.html">Home</a>
+              <router-link to="/Home" class="nav-link mx-lg-2" aria-current="page">Home</router-link>
             </li>
             <li class="nav-item">
               <a class="nav-link mx-lg-2" href="ClassProgramingAdmin.html">Clases</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="Events.html">Eventos</a>
+              <router-link to="/Events" class="nav-link mx-lg-2" aria-current="page">Eventos</router-link>
             </li>
             <li class="nav-item">
               <a class="nav-link mx-lg-2" href="Report.html">Reportes</a>
@@ -31,13 +25,13 @@
             <li class="nav-item">
               <a class="nav-link mx-lg-2" href="StudentAdmission.html">Administración de Roles</a>
             </li>
-          </ul>
+          </div>
         </div>
       </div>
-      <a href="Perfil.html" class="icon iconp">
+      <a href="Perfil.html" class="icon">
         <ion-icon name="person-circle-outline"></ion-icon>
       </a>
-      <button
+      <!-- <button
         class="navbar-toggler"
         type="button"
         data-bs-toggle="offcanvas"
@@ -46,24 +40,40 @@
         aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button> -->
     </div>
   </nav>
 </template>
 
-<script setup>
-
+<script>
+  export default{
+    name: "NavBar"
+  }
 </script>
 
 <style scoped>
 /* Estilos específicos del navbar */
 .nb {
   background: repeating-linear-gradient(#5f2f9a, #b269cd);
+  left: 0;
+  top: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+}
+
+.container-fluid{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .imgt {
   width: 110px;
   height: 50px;
+  margin: 10px 10px;
 }
 
 .navbar-toggler {
@@ -71,7 +81,21 @@
   font-size: 1.25rem;
 }
 
-.nav-link {
+.navbar-nav{
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+router-link{
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  position: relative;
+}
+
+a{
+  text-decoration: none;
   color: rgb(0, 0, 0);
   font-weight: 500;
   position: relative;
@@ -100,6 +124,14 @@
   .nav-link:active::before {
     width: 100%;
     visibility: visible;
+  }
+
+  .icon{
+    color: rgb(255, 255, 255);
+    font-size: 50px;
+    display: inline-block;
+    margin: 10px 10px;
+    transition: 0.5s;
   }
 }
 </style>
