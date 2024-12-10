@@ -4,7 +4,7 @@ import Admin from '../views/AdminViews/AdminView.vue'
 import Professor from '../views/ProfessorViews/ProfessorView.vue'
 import Student from '../views/UsersViews/StudentView.vue'
 import Classes from '../views/AdminViews/ClassView.vue'
-import Classes from '../views/AdminViews/adminRoles.vue'
+import AdminRoles from '../views/AdminViews/adminRoles.vue'
 import vCliente from '../views/UsersViews/vcliente.vue'
 import Home from '@/views/AdminViews/Home.vue'
 
@@ -44,7 +44,7 @@ const router = createRouter({
     {
       path: '/vclientePage',
       name: 'vclienteview',
-      component: vcliente,
+      component: vCliente,
     },
     {
       path: '/Home',
