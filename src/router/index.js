@@ -4,6 +4,8 @@ import Admin from '../views/AdminViews/AdminView.vue'
 import Professor from '../views/ProfessorViews/ProfessorView.vue'
 import Student from '../views/UsersViews/StudentView.vue'
 import Classes from '../views/AdminViews/ClassView.vue'
+import Classes from '../views/AdminViews/adminRoles.vue'
+import Classes from '../views/UsersViews/vcliente.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,9 +31,19 @@ const router = createRouter({
       component: Student,
     },
     {
+      path: '/Roles',
+      name: 'adminRoles',
+      component: Roles,
+    },
+    {
       path: '/Classes',
       name: 'Classes',
       component: Classes,
+    },
+    {
+      path: '/vclientePage',
+      name: 'vclienteview',
+      component: vcliente,
     },
   ],
 })
