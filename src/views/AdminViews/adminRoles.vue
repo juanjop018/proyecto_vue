@@ -1,10 +1,11 @@
 <template>
-    <nav>
-        <Navbar></Navbar>
-    </nav>
-    <div class="container mt-4">
-      <!-- Tabla de Alumnos -->
-      <h2 class="text-center mb-4">Gestión de Alumnos</h2>
+  <body class="body-roles">
+    <NavBar />
+    <div class="roles-content">
+      <h2 class="text-center">Gestión de Alumnos</h2>
+      <div class="nuevo-alumno">
+        <button class="" @click="nuevo">Nuevo Alumno</button>
+      </div>
       <div class="table-responsive">
         <table class="table table-striped table-bordered">
           <thead class="thead-dark">
@@ -23,168 +24,242 @@
               <td>{{ alumno.nota }}</td>
               <td>{{ alumno.profesor }}</td>
               <td>{{ alumno.clase }}</td>
-              <td>{{ alumno.status }}</td>
-              <td>
-                <button class="btn btn-primary btn-sm mr-2" @click="abrirModalModificar(index)">Modificar</button>
-                <button class="btn btn-danger btn-sm mr-2" @click="eliminarAlumno(index)">Eliminar</button>
-                <button class="btn btn-info btn-sm" @click="visualizarAlumno(index)">Visualizar</button>
+              <td>{{ alumno.estado }}</td>
+              <td class="acciones">
+                <button @click="ver(index)">Ver</button>
+                <button @click="editar(index)">Editar</button>
+                <button @click="eliminar(index)">Eliminar</button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
   
-      <!-- Modal Modificar Alumno -->
-      <div class="modal fade" id="modalModificar" tabindex="-1" role="dialog" aria-labelledby="modalModificarLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalModificarLabel">Modificar Alumno</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+      <div v-if="modal" class="modal-overlay">
+        <div class="modal-content">
+          <h5>{{ fila !== null ? 'Editar Alumno' : 'Nuevo Alumno' }}</h5>
+          <form @submit.prevent="guardar">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" class="form-control" id="nombre" v-model="form.nombre" required/>
             </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="nombre">Nombre</label>
-                  <input type="text" class="form-control" id="nombre" v-model="formulario.nombre" />
-                </div>
-                <div class="form-group">
-                  <label for="nota">Nota</label>
-                  <input type="text" class="form-control" id="nota" v-model="formulario.nota" />
-                </div>
-                <div class="form-group">
-                  <label for="profesor">Profesor</label>
-                  <input type="text" class="form-control" id="profesor" v-model="formulario.profesor" />
-                </div>
-                <div class="form-group">
-                  <label for="clase">Clase</label>
-                  <input type="text" class="form-control" id="clase" v-model="formulario.clase" />
-                </div>
-                <div class="form-group">
-                  <label for="status">Estado</label>
-                  <input type="text" class="form-control" id="status" v-model="formulario.status" />
-                </div>
-              </form>
+            <div class="form-group">
+              <label for="nota">Nota</label>
+              <input type="text" class="form-control" id="nota" v-model="form.nota" required/>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary" @click="guardarCambios">Guardar cambios</button>
+            <div class="form-group">
+              <label for="profesor">Profesor</label>
+              <input type="text" class="form-control" id="profesor" v-model="form.profesor" required/>
             </div>
-          </div>
+            <div class="form-group">
+              <label for="clase">Clase</label>
+              <input type="text" class="form-control" id="clase" v-model="form.clase" required/>
+            </div>
+            <div class="form-group">
+              <label for="estado">Estado</label>
+              <input type="text" class="form-control" id="estado" v-model="form.estado" required/>
+            </div>
+            <div class="new-edit-button">
+              <button type="submit">Guardar</button>
+              <button type="button"@click="cerrar">Cerrar</button>
+            </div>
+          </form>
         </div>
       </div>
-  
-      <!-- Módulo de Calendario -->
-      <h2 class="text-center mt-5">Calendario de Eventos</h2>
-      <div class="card shadow-lg mt-4">
-        <div class="card-body">
-          <full-calendar 
-            :plugins="[dayGridPlugin, timeGridPlugin]"
-            :events="eventos" 
-            :editable="true"
-            headerToolbar="{
-              left: 'prev,next today',
-              center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            }"
-            @dateClick="abrirModalEvento"
-          />
-        </div>
-      </div>
-  
-      <!-- Modal Evento -->
-      <div class="modal fade" id="modalEvento" tabindex="-1" role="dialog" aria-labelledby="modalEventoLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalEventoLabel">Nuevo Evento</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="eventoTitulo">Título del Evento</label>
-                  <input type="text" class="form-control" id="eventoTitulo" v-model="nuevoEvento.titulo" />
-                </div>
-                <div class="form-group">
-                  <label for="eventoFecha">Fecha</label>
-                  <input type="date" class="form-control" id="eventoFecha" v-model="nuevoEvento.fecha" />
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary" @click="agregarEvento">Guardar Evento</button>
-            </div>
-          </div>
+
+      <div v-if="modalVer" class="modal-overlay">
+        <div class="modal-content">
+          <h5>Detalles del Alumno</h5>
+          <ul>
+            <li><strong>Nombre:</strong> {{ detalle.nombre }}</li>
+            <li><strong>Nota:</strong> {{ detalle.nota }}</li>
+            <li><strong>Profesor:</strong> {{ detalle.profesor }}</li>
+            <li><strong>Clase:</strong> {{ detalle.clase }}</li>
+            <li><strong>Estado:</strong> {{ detalle.estado }}</li>
+          </ul>
+          <button @click="cerrarVisualizacion">Cerrar</button>
         </div>
       </div>
     </div>
-    <Footer></Footer>
-  </template>
-  
-  <script>
-    import Navbar from "@/components/NavBArComponent.vue";
-  import Footer from "@/components/FooterComponent.vue";
-  import { ref } from 'vue';
-  // import FullCalendar from '@fullcalendar/vue3';
-  // import dayGridPlugin from '@fullcalendar/daygrid';
-  // import timeGridPlugin from '@fullcalendar/timegrid';
-  
-  const alumnos = ref([
-    { nombre: 'Juan Pérez', nota: '8', profesor: 'Mr. Smith', clase: 'Matemáticas', status: 'Activo' },
-    { nombre: 'Ana García', nota: '9', profesor: 'Mrs. Johnson', clase: 'Ciencias', status: 'Activo' },
-  ]);
-  
-  const formulario = ref({ nombre: '', nota: '', profesor: '', clase: '', status: '' });
-  const filaSeleccionada = ref(null);
-  
-  const abrirModalModificar = (index) => {
-    filaSeleccionada.value = index;
-    Object.assign(formulario.value, alumnos.value[index]);
-    $('#modalModificar').modal('show');
-  };
-  
-  const guardarCambios = () => {
-    Object.assign(alumnos.value[filaSeleccionada.value], formulario.value);
-    $('#modalModificar').modal('hide');
-  };
-  
-  const eliminarAlumno = (index) => {
-    alumnos.value.splice(index, 1);
-  };
-  
-  const visualizarAlumno = (index) => {
-    alert(JSON.stringify(alumnos.value[index], null, 2));
-  };
-  
-  const eventos = ref([
-    { title: 'Clase de Danza', start: '2024-12-06' },
-  ]);
-  
-  const nuevoEvento = ref({ titulo: '', fecha: '' });
-  const abrirModalEvento = (info) => {
-    nuevoEvento.value.fecha = info.dateStr;
-    $('#modalEvento').modal('show');
-  };
-  
-  const agregarEvento = () => {
-    eventos.value.push({ title: nuevoEvento.value.titulo, start: nuevoEvento.value.fecha });
-    $('#modalEvento').modal('hide');
-  };
-  </script>
-  
-  <style scoped>
-  .container {
-    max-width: 1200px;
-  }
-  .card {
-    margin: 0 auto;
-  }
-  </style>
-  
-  
+    <Footer />
+    
+  </body>
+</template>
+
+<script>
+import { ref } from "vue";
+import NavBar from "@/components/NavBArComponent.vue"
+import Footer from "@/components/FooterComponent.vue"
+
+export default {
+  components: {
+    NavBar,
+    Footer
+  },
+  setup() {
+    const alumnos = ref([
+      { nombre: "Juan Pérez", nota: "8", profesor: "Mr. Smith", clase: "Bachata", estado: "Activo" },
+      { nombre: "Esteban Vargas", nota: "5", profesor: "Mr. Lookman", clase: "Salsa", estado: "Activo" },
+      { nombre: "Lina Rojas", nota: "8", profesor: "Mr. Smith", clase: "Bachata", estado: "Activo" },
+      { nombre: "Ana García", nota: "9", profesor: "Mrs. Johnson", clase: "Merengue", estado: "Activo" },
+    ]);
+
+    const form = ref({ nombre: "", nota: "", profesor: "", clase: "", estado: "" });
+    const fila = ref(null);
+    const modal = ref(false);
+    const modalVer = ref(false);
+    const detalle = ref({});
+
+    const editar = (index) => {
+      fila.value = index;
+      form.value = { ...alumnos.value[index] };
+      modal.value = true;
+    };
+
+    const eliminar = (index) => {
+      alumnos.value.splice(index, 1);
+    };
+
+    const ver = (index) => {
+      detalle.value = { ...alumnos.value[index] };
+      modalVer.value = true;
+    };
+    
+    const guardar = () => {
+      if (fila.value !== null) {
+        alumnos.value[fila.value] = {...form.value};
+      } else{
+        alumnos.value.push({...form.value})
+      }
+      cerrar();
+    };
+    
+    const cerrar = () => {
+      modal.value = false;
+      form.value = { nombre: "", nota: "", profesor: "", clase: "", estado: "" };
+      fila.value = null;
+    };
+    
+    const nuevo = () => {
+      fila.value = null;
+      form.value = { nombre: "", nota: "", profesor: "", clase: "", estado: "" };
+      modal.value = true;
+    };
+    
+    const cerrarVisualizacion = () => {
+      modalVer.value = false;
+      detalle.value = {};
+    };
+    
+    return {
+      alumnos,
+      form,
+      modal,
+      editar,
+      guardar,
+      eliminar,
+      cerrar,
+      nuevo,
+      ver,
+      modalVer,
+      detalle,
+      cerrarVisualizacion
+    };
+  },
+};
+</script>
+
+<style>
+.body-roles{
+        background: linear-gradient(317deg, #5f2f9a, #076a81, #b269cd);
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .roles-content{
+        flex: 1;
+        padding: 120px 0 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      
+    .roles-content h2{
+      font-size: 2rem;
+      color: rgb(255, 255, 255);
+    }
+
+    .nuevo-alumno{
+      margin: 10px 0 20px;
+    }
+
+    .table-responsive{
+    border: 2px solid #5f2f9a;
+    background-color: white;
+    border-radius: 15px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    }
+
+    .table-responsive th{
+      background-color: #076a81;
+      color: #000;
+    }
+
+    .acciones{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+
+    button{
+      padding: 10px 0;
+      width: 140px;
+      border-radius: 10px;
+      background-color: #5f2f9a;
+      color: white;
+      border: solid 1px transparent;
+    }
+
+    button:hover{
+      background-color: #b269cd;
+      border: solid 1px #2b2b2b;
+    }
+
+.modal-overlay {
+  z-index: 4;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 400px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  gap: 20px;
+}
+
+.new-edit-button{
+  display: flex;
+  margin-top: 30px;
+  gap: 20px;
+}
+</style>

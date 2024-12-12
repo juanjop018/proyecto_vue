@@ -65,9 +65,13 @@
     </div>
   </template>
   
-  <script setup>
+  <script>
   import { ref, computed, onMounted } from 'vue';
-  import Pikaday from 'pikaday';
+  // import Pikaday from 'pikaday';
+
+  export default{
+    name: "Notifications"
+  }
   
   // Datos reactivos
   const selectedDate = ref(null);

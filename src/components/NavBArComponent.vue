@@ -11,19 +11,19 @@
               <router-link to="/Home" class="nav-link mx-lg-2" aria-current="page">Home</router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="ClassProgramingAdmin.html">Clases</a>
+              <router-link to="/Classes" class="nav-link mx-lg-2" aria-current="page">Clases</router-link>
             </li>
             <li class="nav-item">
               <router-link to="/Events" class="nav-link mx-lg-2" aria-current="page">Eventos</router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="Report.html">Reportes</a>
+              <router-link to="/Report" class="nav-link mx-lg-2" aria-current="page">Reportes</router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="Notificacion.html">Notificaciones</a>
+              <router-link to="/Notifications" class="nav-link mx-lg-2" aria-current="page">Notificaciones</router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="StudentAdmission.html">Administración de Roles</a>
+              <router-link to="/Roles" class="nav-link mx-lg-2" aria-current="page">Alumnos - Roles</router-link>
             </li>
           </div>
         </div>
@@ -59,7 +59,7 @@
   top: 0;
   width: 100%;
   position: fixed;
-  z-index: 1;
+  z-index: 4;
 }
 
 .container-fluid{

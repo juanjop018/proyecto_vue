@@ -123,11 +123,15 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import { ref } from 'vue';
 import FullCalendar from '@fullcalendar/vue3';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+
+export default{
+  name: "AdmRoles"
+}
 
 const alumnos = ref([
   { nombre: 'Juan Pérez', nota: '8', profesor: 'Mr. Smith', clase: 'Matemáticas', status: 'Activo' },

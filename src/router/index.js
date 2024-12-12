@@ -1,12 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/GeneralViews/LoginView.vue'
-import Admin from '../views/AdminViews/AdminView.vue'
-import Professor from '../views/ProfessorViews/ProfessorView.vue'
-import Student from '../views/UsersViews/StudentView.vue'
-import Classes from '../views/AdminViews/ClassView.vue'
-import AdminRoles from '../views/AdminViews/adminRoles.vue'
-import vCliente from '../views/UsersViews/vcliente.vue'
 import Home from '@/views/AdminViews/Home.vue'
+import Classes from '../views/AdminViews/ClassView.vue'
+import AdminRoles from '../views/AdminViews/AdminRoles.vue'
+import vCliente from '../views/UsersViews/vcliente.vue'
+import Notifications from '@/views/AdminViews/Notifications.vue'
+import Events from '@/views/AdminViews/Events.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,24 +16,9 @@ const router = createRouter({
       component: Login,
     },
     {
-      path: '/AdministratorPage',
-      name: 'AdminView',
-      component: Admin,
-    },
-    {
-      path: '/ProfessorPage',
-      name: 'ProfessorView',
-      component: Professor,
-    },
-    {
-      path: '/StudentPage',
-      name: 'StudentView',
-      component: Student,
-    },
-    {
-      path: '/Roles',
-      name: 'adminRoles',
-      component: vCliente,
+      path: '/Home',
+      name: 'HomeView',
+      component: Home,
     },
     {
       path: '/Classes',
@@ -42,14 +26,24 @@ const router = createRouter({
       component: Classes,
     },
     {
+      path: '/Roles',
+      name: 'AdminRolesView',
+      component: AdminRoles,
+    },
+    {
       path: '/vclientePage',
       name: 'vclienteview',
       component: vCliente,
     },
     {
-      path: '/Home',
-      name: 'HomeView',
-      component: Home,
+      path: '/Notifications',
+      name: 'NotificationsView',
+      component: Notifications,
+    },
+    {
+      path: '/Events',
+      name: 'EventsView',
+      component: Events,
     }
   ],
 })

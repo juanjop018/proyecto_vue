@@ -52,8 +52,8 @@
   </div>
 </template>
 <script>
-    import NavBar from '../../components/NavBar.vue';
-    import FooterBar from '../../components/FooterBar.vue'
+    import NavBar from '../../components/NavBarComponent.vue'
+import FooterBar from '../../components/FooterComponent.vue'
     export default {
     components: {
         NavBar,

@@ -1,10 +1,8 @@
 <template>
     <body>
-        <header>
-            <NavBar />
-        </header>
+        <NavBar />
         <div class="container">
-            <h1>Programar Clases</h1>
+            <h2>Programar Clases</h2>
             <div class="container-table">
                 <table class="table">
                     <thead>
@@ -35,25 +33,26 @@
                 <button>Editar</button>
                 <button>Información</button>
             </div>
-        </div>
-        <footer>
-            <FooterBar /> 
-        </footer>   
+        </div>   
+        <Footer/>
     </body>
 </template>
 
 <script>
-import NavBar from '../../components/NavBar.vue';
-import FooterBar from '../../components/FooterBar.vue'
+import NavBar from '../../components/NavBarComponent.vue'
+import Footer from '../../components/FooterComponent.vue'
 
 export default {
     components: {
         NavBar,
-        FooterBar,
+        Footer,
     },              
 };  
 </script>
 
 <style scoped>
 @import '../../assets/styles/ClassView';
-</style> 
+.container{
+    flex: 1;
+}
+</style>
